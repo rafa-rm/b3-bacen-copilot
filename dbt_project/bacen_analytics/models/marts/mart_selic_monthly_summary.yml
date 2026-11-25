@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: mart_selic_monthly_summary
+    columns:
+      - name: month_start
+        data_tests:
+          - unique
+          - not_null
+      - name: avg_selic_rate
+        data_tests:
+          - not_null
+      - name: min_selic_rate
+        data_tests:
+          - not_null
+      - name: max_selic_rate
+        data_tests:
+          - not_null
+      - name: observations_count
+        data_tests:
+          - not_null
+      - name: closing_selic_rate
+        data_tests:
+          - not_null

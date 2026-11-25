@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    config:
+      freshness:
+        warn_after: {count: 12, period: hour}
+        error_after: {count: 24, period: hour}
+      loaded_at_field: ingested_at
+
+    tables:
+      - name: raw_bacen_selic
+        description: ""
+        columns:
+          - name: data
+            description: ""
+            data_tests:
+              - unique
+              - not_null
+
+          - name: valor
+            description: ""
+            data_tests:
+              - not_null
+          
+          - name: ingested_at
+            description: ""
+            data_tests:
+              - not_null
