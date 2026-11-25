@@ -11,3 +11,4 @@ langgraph>=1.2.24
 python-dotenv>=1.2.4
 psycopg>=3.3.9
 psycopg-binary>=3.3.9
+pytest>=9.2.0
