@@ -1,6 +1,30 @@
+# Environments & secrets
 .venv/
-__pycache__/
+venv/
 .env
-logs/
-data_raw/*
+
+# Python & pytest caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+data_raw/
 chroma_db/
+**/chroma_bacen_reports_db/
+
+*.pdf
+*.bin
+*.sqlite3
+
+**/target/
+**/dbt_packages/
+**/dbt_modules/
+**/logs/
+**/.user.yml
+**/dbt_cloud.yml
+
+
+**/webserver_config.py
+*.pid
