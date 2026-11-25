@@ -1,0 +1,15 @@
+version: 2
+
+models: 
+  - name: stg_bacen_selic
+    columns:
+      - name: reference_date
+        data_tests:
+          - unique
+          - not_null
+      - name: selic_rate
+        data_tests:
+          - not_null
+      - name: ingested_at
+        data_tests:
+          - not_null
