@@ -49,15 +49,16 @@ def retrieve_by_meetings(inputs: dict) -> list[Document]:
     if not raw["ids"]:
         return []
 
-    scoped_docs = []
-    for doc, meta in zip(raw["documents"], raw["metadatas"]):
-        scoped_docs.append(Document(page_content=doc, metadata=meta))
+    scoped_docs = [
+        Document(page_content=doc, metadata=meta)
+        for doc, meta in zip(raw["documents"], raw["metadatas"])
+    ]
 
-    bm25_retriever = BM25Retriever.from_documents(documents=scoped_docs, k=4)
-    dense_retriver = vector_store.as_retriever(
+    bm25_retriever = BM25Retriever.from_documents(documents=scoped_docs, k=6)
+    dense_retriever = vector_store.as_retriever(
         search_type="mmr",
         search_kwargs={
-            "k": 4,
+            "k": 6,
             "fetch_k": 20,
             "lambda_mult": 0.5,
             "filter": where_filter,
@@ -65,7 +66,7 @@ def retrieve_by_meetings(inputs: dict) -> list[Document]:
     )
 
     return EnsembleRetriever(
-        retrievers=[dense_retriver, bm25_retriever], weights=[0.5, 0.5]
+        retrievers=[dense_retriever, bm25_retriever], weights=[0.5, 0.5]
     ).invoke(inputs["question"])[:6]
 
 
